@@ -1,0 +1,243 @@
+/* ==========================================================================
+   /assets/footer.css
+   Footer plein écran noir avec 2 colonnes et bouton d'appel flottant
+   ========================================================================== */
+
+.site-footer {
+  padding: 60px 24px;
+  position: relative;
+  box-sizing: border-box;
+  background: #000000;
+  color: #f5f5f5;
+}
+
+/* Layout 2 colonnes */
+.footer-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  /* IMPORTANT : pour que les deux colonnes aient la même hauteur */
+  align-items: stretch;
+}
+
+/* Colonne gauche */
+.footer-info {
+  flex: 1;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Logo */
+.footer-logo {
+  display: block;
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Titre principal */
+.footer-info h2 {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 0 32px;
+}
+
+/* Blocs de texte */
+.footer-block {
+  margin-bottom: 28px;
+}
+
+.footer-block h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.footer-block p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-small {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* Tel dans le texte */
+.footer-block a[href^="tel"] {
+  text-decoration: none;
+  font-weight: 700;
+  color: #f4a51c;
+}
+.footer-block a[href^="tel"]:hover {
+  text-decoration: underline;
+}
+
+/* Horaires */
+.footer-hours {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  font-family: "Courier New", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+}
+
+.footer-hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.footer-hours span:first-child {
+  min-width: 90px;
+}
+
+/* Réseaux sociaux */
+.footer-social {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  font-size: 14px;
+  text-decoration: none;
+  opacity: 0.9;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f5f5f5;
+}
+
+.social-link:hover {
+  opacity: 1;
+}
+
+.social-icon {
+  font-size: 18px;
+}
+
+/* Colonne droite : carte */
+.footer-map {
+  flex: 1;
+  /* Pour que la carte se stretch en hauteur avec la colonne gauche */
+  display: flex;
+}
+
+.map-wrapper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+  background: #111;
+  position: relative;
+  /* === IMPORTANT ===
+     Sur desktop, la hauteur suit celle du parent (footer-layout)
+     donc la carte = même hauteur que le contenu à gauche
+  */
+  height: 100%;
+}
+
+.map-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Bouton téléphone flottant */
+.call-floating {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: #f4a51c;
+  color: #151515;
+  text-decoration: none;
+  padding: 10px 18px 10px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  transform: translateY(0);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.call-floating:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+}
+
+.call-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: #151515;
+  font-size: 14px;
+}
+
+.call-text {
+  letter-spacing: 0.04em;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .site-footer {
+    padding: 40px 16px 80px; /* un peu plus de bas pour le bouton flottant */
+  }
+
+  .footer-layout {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* Sur mobile, on repasse sur un ratio fixe pour la carte */
+  .footer-map {
+    display: block;
+  }
+
+  .map-wrapper {
+    height: auto;
+    padding-bottom: 60%; /* ratio de la carte en mobile */
+  }
+
+  .map-wrapper iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-info h2 {
+    font-size: 20px;
+  }
+
+  .footer-hours li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .call-floating {
+    right: 16px;
+    bottom: 16px;
+    font-size: 13px;
+    padding: 8px 14px 8px 10px;
+  }
+}

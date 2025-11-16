@@ -1,0 +1,133 @@
+/* ==========================================================================
+   /assets/index.css
+   Thème global clair + reset léger + bases typographiques et layout
+   ========================================================================== */
+
+:root{
+  /* Palette claire */
+  --bg: #f7f9fc;              /* fond général très clair */
+  --panel: #ffffff;           /* panneaux / formulaires / cartes */
+  --text: #0b1214;            /* texte principal */
+  --muted: #667085;           /* texte secondaire */
+  --primary: #2ecc71;         /* vert principal */
+  --primary-700:#22b864;      /* vert + foncé (focus/hover) */
+
+  --chip-bg:#f2f4f7;          /* pastilles */
+  --chip-text:#0b1214;
+
+  --card:#ffffff;             /* cartes produits */
+  --border:#e5e7eb;           /* bordures légères */
+  --shadow: 0 8px 24px rgba(16, 24, 40, .08);
+  --radius: 16px;             /* arrondis par défaut */
+}
+
+/* Reset léger */
+*{ box-sizing: border-box; }
+html, body{ margin:0; padding:0; }
+
+/* Corps de page */
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background:
+    radial-gradient(1200px 800px at 70% -10%, rgba(46,204,113,0.10) 0%, rgba(46,204,113,0) 40%),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Contrainte de largeur */
+.wrap{ width: min(1200px, 92vw); margin: 0 auto; }
+
+/* Titres & sous-titres génériques */
+h1{ font-size: clamp(28px, 3.5vw, 42px); margin: 28px 0 8px; }
+.sub{ margin: 0 0 20px; color: var(--muted); }
+
+/* Boutons génériques */
+.btn{
+  appearance: none;
+  border:1px solid transparent;
+  background: var(--primary);
+  color:#063a26;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease, background-color .12s ease;
+  box-shadow: 0 2px 8px rgba(46,204,113,.25);
+}
+.btn:hover{
+  filter: brightness(1.02);
+  transform: translateY(-1px);
+}
+.btn:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 184, 100, .35);
+}
+.btn.secondary{
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+/* Champs de formulaire génériques */
+.input, .select{
+  width: 100%;
+  max-width: 280px;
+  background: var(--panel);
+  color: var(--text);
+  border:1px solid var(--border);
+  padding:10px 12px;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.input:focus, .select:focus{
+  border-color: var(--primary-700);
+  box-shadow: 0 0 0 3px rgba(34, 184, 100, .20);
+}
+
+/* Bloc d'information / vide */
+.empty{
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+/* Barre d'état (stats globales) */
+.stats{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:14px 0 26px;
+  color: var(--muted);
+}
+
+/* Utilitaires simples */
+.text-muted{ color: var(--muted); }
+.card{
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Accessibilité : focus visibles sur liens */
+a:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 184, 100, .25);
+  border-radius: 6px;
+}
+
+/* Media queries de base */
+@media (max-width: 640px){
+  .wrap{ width: min(100%, 92vw); }
+  .stats{
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+  }
+}

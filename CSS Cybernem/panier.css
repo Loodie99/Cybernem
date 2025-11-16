@@ -1,0 +1,147 @@
+/* ==========================================================================
+   panier.css — Style complet du panier (drawer)
+   ========================================================================== */
+
+:root {
+  --gold: #E2C191;
+  --text: #333;
+  --border: #e8e8e8;
+  --bg: #ffffff;
+  --bg-soft: #faf7f1;
+}
+
+/* Conteneur global */
+.cart-container {
+  padding: 20px;
+  font-family: system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Panier vide */
+.cart-empty {
+  margin-top: 60px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Liste des produits */
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Image produit */
+.item-image img {
+  width: 68px;
+  height: 68px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+/* Infos produit */
+.item-info {
+  flex: 1;
+}
+
+.item-info h3 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.item-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Bouton retirer */
+.item-remove {
+  display: flex;
+  align-items: center;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.remove-btn:hover {
+  color: var(--gold);
+  transform: scale(1.2);
+}
+
+/* Total */
+.cart-total {
+  padding: 16px 0;
+  border-top: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.cart-total strong {
+  color: var(--gold);
+}
+
+/* Bouton valider */
+.cart-actions {
+  margin-top: 20px;
+}
+
+.btn-validate {
+  width: 100%;
+  background: var(--gold);
+  border: none;
+  padding: 14px 0;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-validate:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+/* Scroll propre */
+.cart-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cart-list::-webkit-scrollbar-thumb {
+  background: #d5c0a3;
+  border-radius: 10px;
+}
+
+.cart-list::-webkit-scrollbar-track {
+  background: #f3f0eb;
+}

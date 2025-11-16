@@ -1,0 +1,238 @@
+/* ==========================================================================
+   /assets/css/header.css
+   Header simple : logo + menu + panier (drawer)
+   ========================================================================== */
+
+/* Scroll fluide pour les ancres */
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --header-bg: #ffffff;
+  --header-border: #e5e5e5;
+  --header-text: #333333;
+  --header-link-hover: #E2C191; /* Ta couleur */
+  --header-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+  --cart-overlay-bg: rgba(0, 0, 0, 0.25);
+  --cart-bg: #ffffff;
+  --cart-border: #f0f0f0;
+  --cart-header-bg: #faf7f1;
+}
+
+/* HEADER FIXE EN HAUT */
+.site-header {
+  width: 100%;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  box-shadow: var(--header-shadow);
+  padding: 12px 30px;
+  box-sizing: border-box;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+/* ESPACE POUR NE PAS CACHER LE CONTENU (hauteur du header) */
+.header-spacer {
+  height: 110px;
+  width: 100%;
+}
+
+/* Contenu intérieur du header */
+.site-header .header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* LOGO */
+.site-header .logo img {
+  height: 80px;
+  width: auto;
+  display: block;
+}
+
+/* MENU NAV */
+.site-header .main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header .main-nav a {
+  text-decoration: none;
+  font-size: 16px;
+  color: var(--header-text);
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.site-header .main-nav a:hover {
+  color: var(--header-link-hover);
+  opacity: 0.85;
+}
+
+/* ICÔNE PANIER */
+.cart-icon img {
+  height: 28px;
+  width: 28px;
+  filter: invert(0.3);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.cart-icon img:hover {
+  /* effet doré approximatif */
+  filter: invert(0.7) sepia(1) saturate(300%) hue-rotate(330deg);
+  transform: scale(1.1);
+}
+
+/* ============================= */
+/*      DRAWER PANIER DROITE     */
+/* ============================= */
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--cart-overlay-bg);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 10000; /* au-dessus du header */
+}
+
+.cart-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-drawer {
+  background: var(--cart-bg);
+  width: min(420px, 100%);
+  max-width: 100%;
+  height: 100vh;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+  border-left: 1px solid var(--cart-border);
+
+  display: flex;
+  flex-direction: column;
+
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+}
+
+.cart-drawer.is-open {
+  transform: translateX(0);
+}
+
+/* Header du panier */
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--cart-header-bg);
+  border-bottom: 1px solid var(--cart-border);
+}
+
+.cart-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--header-text);
+}
+
+/* Bouton fermer (croix) */
+.cart-close {
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  color: var(--header-text);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.cart-close:hover {
+  color: var(--header-link-hover);
+  transform: scale(1.1);
+}
+
+/* Contenu du panier (iframe) */
+.cart-body {
+  flex: 1;
+  min-height: 0;
+  /* pour que l'iframe prenne bien toute la hauteur */
+}
+
+.cart-body iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ============================= */
+/*            RESPONSIVE         */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 10px 16px;
+  }
+
+  .site-header .main-nav ul {
+    gap: 16px;
+  }
+
+  .site-header .main-nav a {
+    font-size: 14px;
+  }
+
+  .cart-icon img {
+    height: 26px;
+    width: 26px;
+  }
+
+  .header-spacer {
+    height: 100px;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-header .main-nav ul {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .cart-icon {
+    align-self: flex-end;
+    margin-top: 8px;
+  }
+
+  .header-spacer {
+    height: 120px;
+  }
+
+  .cart-drawer {
+    width: 100%; /* Sur très petit écran, le panier prend toute la largeur */
+  }
+}
